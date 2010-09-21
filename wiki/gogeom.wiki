@@ -1,0 +1,11 @@
+GO package for 2D geometry
+
+*= Introduction =*
+
+This is a project for learning purposes.
+
+*= Details =*
+
+First I'm trying to code some functions for 2D geometry.
+
+Later, hipefully, 3D should be treated as weel.
