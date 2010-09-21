@@ -1,7 +1,27 @@
-/* =====================
-      David Fernandes
-   daugfernandes@aim.com
-   ===================== */
+/*
+ *
+ *     Copyright (C) 2010  David Fernandes
+ *
+ *                         Rua da Quinta Amarela, 60
+ *                         4475-663 MAIA
+ *                         PORTUGAL
+ *
+ *                         <daugfernandes@aim.com>
+ *
+ *     This program is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU General Public License as published by
+ *     the Free Software Foundation, either version 3 of the License, or
+ *     (at your option) any later version.
+ *
+ *     This program is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU General Public License for more details.
+ *
+ *     You should have received a copy of the GNU General Public License
+ *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 package geom
 
@@ -108,8 +128,39 @@ func (this *Polyline2D) Equal(pl *Polyline2D) bool {
 	return true
 }
 
+/* Calc MBR (Minimum Bounding Rectangle
+*/
+func (this *Polyline2D) MBR() *Polygon2D {
+
+	minx, miny := this.Vertexes[0].X, this.Vertexes[0].Y 
+	maxx, maxy := minx, miny
+
+	for _, vtx := range this.Vertexes[1:] {
+		if vtx.X < minx { 
+			minx = vtx.X 
+		}
+		if vtx.X > maxx { 
+			maxx = vtx.X 
+		}
+		if vtx.Y < miny { 
+			miny = vtx.Y 
+		}
+		if vtx.Y > maxy { 
+			maxy = vtx.Y 
+		}
+	}
+
+	return &Polygon2D{[]Point2D{Point2D{minx,miny},Point2D{maxx,miny},Point2D{maxx,maxy},Point2D{minx,maxy},Point2D{minx,miny}}};
+}
+
+/* TODO: Calc ConvexHull
+*/
+func (this *Polyline2D) ConvexHul() *Polygon2D {
+	return nil
+}
+
 /*===========================================================================
-  PolygonD
+  Polygon2D
   TODO: Consider the possibility of "HOLES"
   ===========================================================================*/
 
@@ -125,7 +176,7 @@ func (this *Polygon2D) Size() int {
 	return len(this.Vertexes)
 }
 
-// Calc length of polygon
+// Calc length of polygon border
 func (this *Polygon2D) Length() float64 {
 	var result float64 = 0;
 	var pPrev Point2D
@@ -140,8 +191,8 @@ func (this *Polygon2D) Length() float64 {
 }
 
 /* Calc Area of Polygon
-   If Area < 0 the vertexes are ordered counter clockwise
-   Some systems consider this case as a HOLE
+   If Area < 0 the vertexes are ordered clockwise
+   Some systems consider this case as a HOLE and so should this package
 */
    
 func (this *Polygon2D) Area() float64 {
@@ -209,4 +260,34 @@ func (this *Polygon2D) Equal(pl *Polygon2D) bool {
 	return consecutive_matches == size
 }
 
+/* Calc MBR (Minimum Bounding Rectangle)
+*/
+func (this *Polygon2D) MBR() *Polygon2D {
 
+	// Ommit [0] as == [size-1]
+	minx, miny := this.Vertexes[1].X, this.Vertexes[1].Y 
+	maxx, maxy := minx, miny
+
+	for _, vtx := range this.Vertexes[2:] {
+		if vtx.X < minx { 
+			minx = vtx.X 
+		}
+		if vtx.X > maxx { 
+			maxx = vtx.X 
+		}
+		if vtx.Y < miny { 
+			miny = vtx.Y 
+		}
+		if vtx.Y > maxy { 
+			maxy = vtx.Y 
+		}
+	}
+
+	return &Polygon2D{[]Point2D{Point2D{minx,miny},Point2D{maxx,miny},Point2D{maxx,maxy},Point2D{minx,maxy},Point2D{minx,miny}}};
+}
+
+/* TODO: Calc ConvexHull
+*/
+func (this *Polygon2D) ConvexHul() *Polygon2D {
+	return nil
+}
