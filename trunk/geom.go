@@ -74,10 +74,11 @@ func (pl *Polyline2D) Centroid() *Point2D {
 		} else {
 			l = vtx.Distance(&pPrev)
 			tl += l 
-			tx += (vtx.X + pPrev.X) * (l / 2)
-			ty += (vtx.Y + pPrev.Y) * (l / 2)
+			// tx,ty (coords of mid-point) weighted by length
+			tx += (vtx.X + pPrev.X) / 2 * l
+			ty += (vtx.Y + pPrev.Y) / 2 * l
+			pPrev = vtx
 		}
 	}
-	fmt.Println(tx/(l),ty/(l))
 	return &Point2D{tx / tl, ty / tl}
 }
