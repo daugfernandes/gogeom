@@ -1,5 +1,6 @@
 /* David Fernandes
-   daugfernandes@aim.com */
+   daugfernandes@aim.com
+	====================== */
 
 package geom
 
