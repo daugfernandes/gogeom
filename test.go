@@ -8,8 +8,8 @@ import (
 func main() {
 
 	p1 := &geom.Point2D{10,10}
-	p2 := &geom.Point2D{10,20}
-	p3 := &geom.Point2D{20,20}
+	p2 := &geom.Point2D{20,20}
+	p3 := &geom.Point2D{30,10}
 
   	pa := []geom.Point2D{*p1, *p2, *p3}
 
