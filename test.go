@@ -30,6 +30,7 @@ import (
         "./geom"
 )
 
+
 func main() {
 	
 	p1 := &geom.Point2D{10,0}
