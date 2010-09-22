@@ -36,7 +36,7 @@ type Point2D struct {
 	Y float64
 }
 
-/* Calc distance between 2 points
+/* Calculate distance between 2 points
 */
 func (this *Point2D) Distance(p *Point2D) float64 {
 	return math.Sqrt(math.Pow(this.X-p.X, 2) + math.Pow(this.Y-p.Y, 2))
