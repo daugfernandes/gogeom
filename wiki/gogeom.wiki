@@ -8,4 +8,4 @@ This is a project for learning purposes.
 
 First I'm trying to code some functions for 2D geometry.
 
-Later, hipefully, 3D should be treated as weel.
+Later, hopefully, 3D should be treated as weel.
