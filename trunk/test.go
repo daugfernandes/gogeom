@@ -33,11 +33,15 @@ import (
 
 func main() {
 	
-	p1 := &geom.Point2D{10,0}
-	p2 := &geom.Point2D{20,10}
-	p3 := &geom.Point2D{10,20}
-	p4 := &geom.Point2D{0,10}
+	p1 := &geom.Point2D{1.10,0.2}
+	p2 := &geom.Point2D{2.033,-1.3120}
+	p3 := &geom.Point2D{1.3032,-2.4067}
+	p4 := &geom.Point2D{0,1.201}
 
-	fmt.Println(plg)
+	pl := []geom.Point2D{*p1,*p2,*p3,*p4}
+
+	plg := &geom.Polygon2D{pl}
+
+	fmt.Println(plg.Area())
 	return
 }
