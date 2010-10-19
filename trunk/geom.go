@@ -54,7 +54,7 @@ func (this *Point2D) Rotate(center *Point2D, angle float64) *Point2D {
 }
 
 func (this *Point2D) String() string {
-	return fmt.Sprintf("Point2d->%s%f%s%f", "X:", this.X, ",Y:", this.Y)
+	return fmt.Sprintf("Point2d->%s%f% s%f", "X:", this.X, ",Y:", this.Y)
 }
 
 /* Compares two points
@@ -82,16 +82,17 @@ func (this *Polyline2D) Size() int {
 
 // Calc length of polyline
 func (this *Polyline2D) Length() float64 {
-	var result float64 = 0;
-	var pPrev Point2D
-	for i, vtx := range this.Vertexes {
-		if i != 0 {
-			fmt.Println(vtx.String(),pPrev.String())
-			result += vtx.Distance(&pPrev)
-		}
-		pPrev = vtx
-	}
-	return result
+     	return Length(this.Vertexes)
+}
+
+func Length(arr []Point2D) float64 {
+
+     if len(arr) <  2 { return 0 }
+     if len(arr) == 2 { return arr[0].Distance(&arr[1]) } 
+     if len(arr) == 3 { return Length(arr[0:2])+Length(arr[1:3]) }
+     // TODO: chanel
+     return Length(arr[0:len(arr)/2])+Length(arr[len(arr)/2-1:len(arr)])
+
 }
 
 // Calc Centroid of polyline
