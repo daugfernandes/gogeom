@@ -34,25 +34,32 @@ import (
 func main() {
 	
 	p1 := &geom.Point2D{1.10,0.2}
-//	p2 := &geom.Point2D{2.033,-1.3120}
-//	p3 := &geom.Point2D{1.3032,-2.4067}
-//	p4 := &geom.Point2D{0,1.201}
+	p2 := &geom.Point2D{2.033,-1.3120}
+	p3 := &geom.Point2D{1.3032,-2.4067}
+	p4 := &geom.Point2D{0,1.201}
 
 	p6 := *p1.Centroid()
 	p6.X = 10
 //	fmt.Println(p6)
 //	fmt.Println(*p1)
 	
-	pl := []geom.Point2D{*p1}
-//	pl := []geom.Point2D{*p1,*p2,*p3,*p4}
+//	pl := []geom.Point2D{*p1}
+	pl := []geom.Point2D{*p1,*p2,*p3,*p4,*p1}
 
 //	plg := &geom.Polygon2D{pl}
 	pll := &geom.Polyline2D{pl}
 	
 //	fmt.Println(plg.Area())
-	fmt.Println(pll.Length(),"aaa")
+//	fmt.Println(pll.Length(),"aaa")
 //	fmt.Println(pll.Length1())
 //	fmt.Println(pll.Length2())
-	fmt.Println(pll.Length1()+pll.Length2())
+//	fmt.Println(pll.Length1()+pll.Length2())
+
+	pl2 := pll.Rotate(&geom.Point2D{2,3},2*3.1415)
+
+	fmt.Println(pll.Vertexes)
+	fmt.Println(pl2.Vertexes)
+	fmt.Println(pll.Length())
+	fmt.Println(pl2.Length())
 	return
 }

@@ -72,6 +72,15 @@ type Polyline2D struct {
 	Vertexes []Point2D
 }
 
+// Rotate polyline
+func (this *Polyline2D) Rotate(center *Point2D, angle float64) *Polyline2D {
+        nvtx := make([]Point2D, len(this.Vertexes))
+	for i, vtx := range this.Vertexes {
+	        nvtx[i]=*vtx.Rotate(center, angle)
+	}
+	return &Polyline2D{nvtx}
+}
+
 func (this *Polyline2D) String() string {
 	return fmt.Sprintf("Polyline2D->%d%s",this.Size()," points")
 }
@@ -167,6 +176,15 @@ func (this *Polyline2D) ConvexHul() *Polygon2D {
 
 type Polygon2D struct {
 	Vertexes []Point2D
+}
+
+// Rotate polygon
+func (this *Polygon2D) Rotate(center *Point2D, angle float64) *Polygon2D {
+        nvtx := make([]Point2D, len(this.Vertexes))
+	for i, vtx := range this.Vertexes {
+	        nvtx[i]=*vtx.Rotate(center, angle)
+	}
+	return &Polyline2D{nvtx}
 }
 
 func (this *Polygon2D) String() string {
