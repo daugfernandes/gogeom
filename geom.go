@@ -184,7 +184,7 @@ func (this *Polygon2D) Rotate(center *Point2D, angle float64) *Polygon2D {
 	for i, vtx := range this.Vertexes {
 	        nvtx[i]=*vtx.Rotate(center, angle)
 	}
-	return &Polyline2D{nvtx}
+	return &Polygon2D{nvtx}
 }
 
 func (this *Polygon2D) String() string {
