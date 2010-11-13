@@ -37,7 +37,7 @@ func main() {
 	p2 := &geom.Point2D{2.033,-1.3120}
 	p3 := &geom.Point2D{1.3032,-2.4067}
 	p4 := &geom.Point2D{0,1.201}
-
+// teste no toshiba
 	p6 := *p1.Centroid()
 	p6.X = 10
 //	fmt.Println(p6)
