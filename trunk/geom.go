@@ -35,7 +35,7 @@ type Point2D struct {
 	X float64
 	Y float64
 }
-
+ 
 /* Calculate distance between 2 points
 */
 func (this *Point2D) Distance(p *Point2D) float64 {
@@ -123,6 +123,7 @@ func (this *Polyline2D) Centroid() *Point2D {
 
 /* Compares two polylines
    TODO: Maybe some tolerance value should be considered!
+
 */
 func (this *Polyline2D) Equal(pl *Polyline2D) bool {
 	if this.Size() != pl.Size() {
